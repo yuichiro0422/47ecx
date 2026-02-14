@@ -1,0 +1,1014 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+/* 管理者画面cssファイル  */
+
+html {
+    font-size: 62.5%; /* 10px = 1rem */
+    /* font-family: "Zen Antique Soft", serif; */
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ---------------------------------
+    管理画面：テーブルスタイル 
+-----------------------------------*/
+
+/* テーブル共通スタイル */
+.admin_tableContainer {
+    margin: 2rem 0;
+}
+.admin_table {
+    width: 100%;
+    border-collapse: collapse;
+    letter-spacing: 0.5px;
+}
+.admin_table th {
+    height: 4rem;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #fff;
+    border: 1px solid #ccc;
+    background-color: #006699;
+}
+.admin_table td {
+    vertical-align: middle;
+    font-size: 1.5rem;
+    border: 1px solid #ccc;
+    padding: 0.8rem 1rem;
+}
+#admin_tableBody tr:nth-child(even) {
+    background-color: #eee;
+}
+.admin_stockColor {
+    background-color: #ffcc66;
+    transition: 0.2s;
+}
+.adminProduct_adminmenu .admin_stockColor:hover {
+    background-color: rgba(255, 204, 102, 0.7);
+    transition: 0.2s;
+}
+.admin_editColor {
+    background-color: #0066ff;
+    color: #fff;
+    transition: 0.2s;
+}
+.adminProduct_adminmenu .admin_editColor:hover {
+    background-color: rgba(0, 102, 255, 0.7);
+    transition: 0.2s;
+}
+.admin_deleteColor {
+    background-color: #cc0033;
+    color: #fff;
+    transition: 0.2s;
+}
+.adminProduct_adminmenu .admin_deleteColor:hover {
+    background-color: rgba(204, 0, 51, 0.7);
+    transition: 0.2s;
+}
+.admin_startColor {
+    background-color: #00b359;
+    color: #fff;
+    transition: 0.2s;
+}
+.adminProduct_adminmenu .admin_startColor:hover {
+    background-color: rgba(0, 179, 89, 0.7);
+    transition: 0.2s;
+}
+/* ----- 商品管理テーブル -------------*/
+.admin_registerColor {
+    color: #fff;
+    background-color: #006600;
+}
+
+.adminProduct_id {
+    width: 3.5%;
+    text-align: right;
+}
+.adminProduct_product {
+    width: 30%;
+    > div {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        > div {
+            height: fit-content;
+        }
+    }
+}
+.adminProduct_img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.adminProduct_prefectureName {
+    margin: 0;
+    font-size: 1.3rem;
+    margin-bottom: 0.2rem;
+}
+.adminProduct_productName {
+    margin: 0;
+    font-weight: 500;
+}
+
+.adminProduct_price {
+    width: 7.5%;
+    text-align: right;
+}
+.adminProduct_stock {
+    width: 5%;
+    text-align: right;
+}
+.sold_out {
+    color: #cc0033;
+}
+.adminProduct_createdAt {
+    width: 10%;
+    text-align: right;
+}
+
+.adminProduct_updateAt {
+    width: 10%;
+    text-align: right;
+}
+.adminProduct_state {
+    width: 7.5%;
+    text-align: center;
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    p {
+        width: fit-content;
+        padding: 0.5rem 1rem;
+        margin: 0 auto;
+        border-radius: 5px;
+        white-space: nowrap;
+        i {
+            margin-right: 0.3rem;
+        }
+    }
+    button {
+        height: fit-content;
+        font-size: 1.3rem;
+    }
+    .adminProduct_state_public {
+        color: #007533;
+        background-color: #ceffe3;
+    }
+    .adminProduct_state_pend {
+        color: #886100;
+        background-color: #fbecb6;
+    }
+    .adminProduct_state_stop {
+        color: #6a1917;
+        background-color: #ff8080;
+    }
+}
+.adminProduct_adminmenu {
+    width: 10%;
+}
+.admin_table_adminmenu div {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.4rem;
+}
+.admin_table_adminmenuBtn {
+    width: 3.5rem;
+    aspect-ratio: 1 / 1.1;
+    text-align: center;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+/* ----- 注文管理テーブル ----------*/
+.adminOrderHistory_id {
+    width: 2.5%;
+    text-align: center;
+}
+.adminOrderHistory_userId {
+    width: 2.5%;
+    text-align: center;
+}
+.adminOrderHistory_totalPrice {
+    width: 5%;
+    text-align: right;
+}
+.adminOrderHistory_date {
+    width: 10%;
+    text-align: right;
+}
+.adminOrderHistory_products {
+    width: 20%;
+}
+.adminOrderHistory_products ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    li {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        p {
+            margin: 0;
+        }
+    }
+}
+.adminOrderHistory_productId {
+    width: 7.5%;
+    text-align: center;
+}
+.adminOrderHistory_productName {
+    width: 40%;
+    text-align: left;
+}
+.adminOrderHistory_productPrice {
+    width: 20%;
+    text-align: right;
+}
+.adminOrderHistory_productNum {
+    width: 7.5%;
+    text-align: right;
+    span {
+        font-size: 1rem;
+        margin-right: 0.3rem;
+    }
+}
+.adminOrderHistory_adminmenu {
+    width: 5%;
+    text-align: center;
+}
+
+/* ----------------------
+管理者画面：商品管理
+---------------------- */
+.admin_body {
+    display: flex;
+    width: 100%;
+    font-family: 'Noto Sans JP', serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+.admin_body::before {
+    content: '';
+    display: block;
+    width: 18rem;
+}
+
+.admin_navigation {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 18rem;
+    height: 100vh;
+    background-color: #006699;
+}
+.admin_navigation p a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    span {
+        margin-left: 0.75rem;
+        font-size: 1.7rem;
+    }
+}
+
+.admin_nav_title {
+    margin: 0;
+    padding: 1rem;
+    background-color: #0099ff;
+}
+.admin_nav_element {
+    margin: 0;
+    padding: 0.75rem 1.75rem;
+    border-bottom: 1px solid #aaa;
+}
+.admin_nav_userPageLink {
+    margin: auto 0 1rem 0;
+    padding: 0.75rem 1.5rem;
+    i {
+        margin-right: 0.5rem;
+    }
+}
+
+.adminProduct_container {
+    flex-grow: 1;
+    width: auto;
+    padding: 2rem 3.5rem;
+}
+
+.adminProduct_title {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    img {
+        display: block;
+        width: 2.2rem;
+        height: 2.2rem;
+    }
+    h2 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+}
+
+.adminProduct_header {
+    display: flex;
+    padding: 2rem 0;
+    h3 {
+        margin: 0;
+        font-size: 2rem;
+    }
+    > button {
+        margin: 0 0 0 auto;
+    }
+}
+
+.adminProduct_searchBox {
+    min-width: 47.5rem;
+    width: fit-content;
+    font-size: 1.6rem;
+    form {
+        display: flex;
+    }
+    input {
+        flex-grow: 1;
+        padding: 0.7rem 1rem;
+        outline: none;
+        border: 2px solid #006699;
+        border-radius: 3px 0 0 3px;
+        transition: 0.1s;
+    }
+    input:focus {
+        border-color: #0066ff;
+        box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+        transition: 0.1s;
+    }
+    #adminSearchBoxSubmitBtn {
+        width: auto;
+        aspect-ratio: 1 / 1;
+        padding: 0.5rem 0.7rem;
+        background-color: #eee;
+        text-align: center;
+        font-size: 1.75rem;
+        font-weight: 100;
+        border: 2px solid #006699;
+        border-left: none;
+        border-radius: 0 3px 3px 0;
+        transition: 0.2s;
+    }
+    #adminSearchBoxSubmitBtn:hover {
+        background-color: #fff;
+        transition: 0.1s;
+    }
+    #adminSearchBoxResetBtn {
+        width: auto;
+        height: fit-content;
+        margin: auto 0 auto 1rem;
+        padding: 0.3rem;
+        font-size: 1.75rem;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        transition: 0.2s;
+    }
+    #adminSearchBoxResetBtn:hover {
+        border: 1px solid #006699;
+        transition: 0.1s;
+    }
+}
+
+/* ----- 検索ボックス -------------- */
+.adminProduct_filter_container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-bottom: 3rem;
+}
+
+/*----- 都道府県フィルタリング ------- */
+.adminProduct_filter_prefecture {
+    h6 {
+        margin: 0 0 1rem 0;
+        padding: 1rem 2rem;
+        background-color: #eee;
+        font-size: 1.75rem;
+    }
+    > div {
+        display: flex;
+        width: 100;
+        gap: 3rem;
+        /* border: 1px solid #aaa;
+        border-bottom: none; */
+    }
+}
+.adminProduct_filter_region {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+}
+.adminProduct_filter_region_element:last-child {
+    border-bottom: none;
+}
+.adminProduct_filter_region_element p {
+    margin: 0;
+    padding: 1.2rem;
+    border-bottom: 1px solid #aaa;
+}
+.adminProduct_filter_region_element ul {
+    display: flex;
+    gap: 1.75rem;
+    padding: 1.2rem 1rem 1.2rem 2.5rem;
+    /* background-color: #fcfcfc;
+    border-bottom: 1px solid #aaa; */
+}
+.adminProduct_filter_prefecture_element {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    label {
+        width: fit-content;
+        white-space: nowrap;
+    }
+}
+
+/*------ 詳細検索 --------*/
+.adminProduct_detailFilter_container {
+    display: flex;
+    align-items: center;
+}
+.adminProduct_detailFilteringModal_openBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+    border: 1px solid #c0c0c0;
+    border-radius: 8px;
+    img {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+    p {
+        margin: 0;
+    }
+}
+.adminProduct_detailFilter_settingList {
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+}
+.adminProduct_detailFilter_settingList_element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid #c0c0c0;
+    border-radius: 8px;
+    button {
+        transition: 0.2s;
+    }
+    button:hover {
+        opacity: 0.5;
+        transition: 0.2s;
+    }
+}
+
+.adminProduct_detailFilter_settingList_element_value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    .adminProduct_detailFilter_settingList_element_key {
+        margin-right: 0.5rem;
+        padding-right: 0.5rem;
+        font-weight: 500;
+        border-right: 1px solid #c0c0c0;
+    }
+    .adminProduct_detailFilter_settingList_element_tilde {
+        margin: 0 0.5rem;
+        font-size: 1.5rem;
+    }
+}
+.admin_detailFilter_color {
+    background-color: #eee;
+}
+
+.adminModal_detailFilter_container {
+    width: auto;
+    form {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        gap: 3rem;
+        padding: 3rem 2.5rem;
+    }
+}
+.adminModal_detailFilter_element {
+    display: flex;
+}
+.adminModal_detailFilter_inputContainer {
+    display: flex;
+    flex-grow: 1;
+    width: auto;
+}
+
+.adminModal_detailFilter_inputContainer input {
+    outline: none;
+    transition: 0.1s;
+}
+.adminModal_detailFilter_inputContainer input:focus {
+    border-color: #0066ff;
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+    transition: 0.1s;
+}
+.adminModal_detailFilter_label {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 7.5rem;
+    margin-right: 1rem;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.adminModal_detailFilter_input_num {
+    width: 40%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #c0c0c0;
+    border-radius: 3px;
+    font-size: 1.5rem;
+}
+.adminModal_detailFilter_input_date {
+    width: 40%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #c0c0c0;
+    border-radius: 3px;
+    font-size: 1.5rem;
+}
+.adminModal_detailFilter_input_text {
+    width: 75%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #c0c0c0;
+    border-radius: 3px;
+    font-size: 1.5rem;
+}
+.adminModal_detailFilter_tilde {
+    margin: 0 1rem;
+    font-size: 2rem;
+}
+
+.modal-detailFiltering-footer {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    gap: 2rem;
+    margin: 1rem 2rem;
+}
+.modal-detailFiltering-footer button {
+    padding: 0.5rem 1.4rem;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+}
+.modal-detailFiltering-footer button:first-child {
+    position: absolute;
+    left: 0;
+}
+
+.admin_tableMenu {
+    display: flex;
+    margin-top: 2rem;
+}
+
+/* テーブル並び操作 */
+.adminProduct_tableOrderMenu {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 2rem;
+    margin: 0 0 0 auto;
+}
+
+.adminProduct_tableSortSelector_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: fit-content;
+    font-size: 1.3rem;
+    p {
+        margin: 0;
+    }
+}
+.adminProduct_tableSortSelector {
+    padding: 0.3rem 1rem;
+    border: 1px solid #c0c0c0;
+    border-radius: 5px;
+}
+.admin_tableOrderChangeBtn_container {
+    display: flex;
+}
+.admin_tableOrderChangeBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1.3rem;
+    background-color: #eee;
+    border: 2px solid transparent;
+    opacity: 0.4;
+    img {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+}
+.admin_tableOrderChangeBtn:first-child {
+    border-radius: 8px 0 0 8px;
+}
+.admin_tableOrderChangeBtn:last-child {
+    border-radius: 0 8px 8px 0;
+}
+.admin_tableOrderChangeBtn_selected {
+    border: 2px solid #006699;
+    opacity: 1;
+}
+
+/* ページネーション */
+.adminProduct_pageNation_container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    p {
+        width: fit-content;
+        margin: 0;
+        font-size: 1.3rem;
+    }
+    span {
+        margin: 0.2rem;
+        font-weight: 600;
+    }
+    button {
+        font-size: 1.3rem;
+        padding: 0.1rem 0.4rem;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        transition: 0.1s;
+    }
+    button:hover {
+        border: 1px solid #000;
+        transition: 0.1s;
+    }
+}
+
+.adminProduct_pageNation_container_bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    p {
+        width: fit-content;
+        margin: 0;
+        font-size: 1.4rem;
+    }
+    span {
+        margin: 0.2rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    button {
+        font-size: 1.3rem;
+        padding: 0.1rem 0.4rem;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        transition: 0.1s;
+    }
+    button:hover {
+        border: 1px solid #000;
+        transition: 0.1s;
+    }
+}
+
+.adminProduct_registerBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 1.3rem;
+    font-size: 1.8rem;
+    border-radius: 4px;
+    transition: 0.2s;
+    img {
+        width: 1.7rem;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+    p {
+        margin: 0;
+    }
+}
+.adminProduct_registerBtn:hover {
+    background-color: rgba(0, 102, 0, 0.7);
+    transition: 0.2s;
+}
+
+/* -------------------------------
+モーダル：共通スタイル
+---------------------------------*/
+.modal_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 1.2rem;
+    border-bottom: 1px solid #c0c0c0;
+}
+
+.modal_header img {
+    display: block;
+    width: 1.7rem;
+    height: 1.7rem;
+}
+.modal_title {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+/* .modal-footer {
+    position: sticky;
+    bottom: 10px;
+} */
+.modal-stock-footer,
+.modal-delete-footer,
+.modal-start-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 1rem 2rem;
+}
+.modal-stock-footer button,
+.modal-delete-footer button,
+.modal-start-footer button {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    padding: 0.5rem 1.4rem;
+}
+
+.modal_product {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 3rem;
+    border-bottom: 1px solid #c0c0c0;
+}
+.modal_product div {
+    flex-grow: 1;
+    position: relative;
+}
+
+.modal_productPref {
+    margin: 0;
+    font-size: 1.2rem;
+}
+.modal_productName {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.modal_product img {
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.modal_productId {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+/* ---------------------------
+モーダル：在庫変更
+------------------------------ */
+.modal_stockForm_container {
+    margin: 3rem;
+}
+
+.modal_stockForm_container form {
+    display: block;
+    display: flex;
+}
+.modal_stockForm_columnName {
+    margin-right: 3rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+.modal_form_stock input {
+    font-size: 2.2rem;
+    padding: 0.5rem 0;
+}
+
+/* inputのnumをプラスマイナスボタンで増減するuIのCSS */
+.form_num {
+    display: flex;
+}
+.form_num input {
+    text-align: center;
+    border: 1px solid #c0c0c0;
+}
+.form_num_plusBtn,
+.form_num_minusBtn {
+    width: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e9e9e9;
+    transition: 0.2s;
+}
+.form_num_plusBtn:hover,
+.form_num_minusBtn:hover {
+    background-color: #c9c9c9;
+    transition: 0.2s;
+}
+.form_num_plusBtn {
+    border-top: 1px solid #c0c0c0;
+    border-right: 1px solid #c0c0c0;
+    border-bottom: 1px solid #c0c0c0;
+    border-radius: 0 4px 4px 0;
+}
+.form_num_minusBtn {
+    border-top: 1px solid #c0c0c0;
+    border-left: 1px solid #c0c0c0;
+    border-bottom: 1px solid #c0c0c0;
+    border-radius: 4px 0 0 4px;
+}
+.form_num i {
+    text-align: center;
+    font-size: 1.4rem;
+}
+/* input["number"]のスピンボタン非表示 */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ----------------------
+モーダル：商品情報変更
+------------------------- */
+.modal_editForm_container {
+    width: 100%;
+    display: flex;
+}
+.modal_editForm_container form {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 77.5%;
+    margin: 3rem 3rem 4rem;
+}
+.modal-edit-footer {
+    width: 22.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    gap: 1.5rem;
+    border-left: 1px solid #c0c0c0;
+}
+.modal-edit-footer button {
+    width: 80%;
+    padding: 0.5rem 0;
+    font-size: 1.7rem;
+    letter-spacing: 1px;
+}
+
+.modal_form_imageContainer,
+.modal_form_imagePathContainer,
+.modal_form_productNameContainer,
+.modal_form_prefectureNameContainer,
+.modal_form_priceContainer,
+.modal_form_descriptionContainer {
+    width: 100%;
+    display: flex;
+}
+
+.modal_editForm_columnName {
+    width: 18%;
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.modal_form_image {
+    width: 82%;
+}
+.modal_form_image img {
+    width: 100%;
+    height: 29rem;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.modal_form_imagePath,
+.modal_form_productName,
+.modal_form_prefectureName,
+.modal_form_price,
+.modal_form_description {
+    width: 82%;
+    padding: 0.8rem;
+    margin: 0;
+    border: 1px solid #c0c0c0;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    overflow-wrap: break-word;
+}
+.modal_form_imagePath {
+    font-size: 1.4rem;
+}
+.modal_form_price {
+    font-size: 1.8rem;
+}
+
+/* ----------------------
+モーダル：商品削除
+------------------------- */
+.modal_deleteForm_container {
+    width: 100%;
+}
+
+.modal_deleteForm_container form {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 3rem 0;
+}
+
+.modal_deleteForm_container form h6 {
+    font-size: 1.8rem;
+}
+.modal_deleteForm_container form p {
+    font-size: 1.4rem;
+}
+
+/* ----------------------
+モーダル：販売開始
+------------------------- */
+.modal_startForm_container {
+    width: 100%;
+}
+
+.modal_startForm_container form {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 3rem 0;
+}
+
+.modal_startForm_container form h6 {
+    font-size: 1.8rem;
+}
+.modal_startForm_container form p {
+    font-size: 1.4rem;
+}
+
+/* 最後に記述 */
+.displayNone {
+    display: none;
+}
+/* .hidden {
+    visibility: hidden;
+} */
