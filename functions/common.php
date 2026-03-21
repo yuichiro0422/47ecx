@@ -33,7 +33,7 @@ function isAuth() {
 function redirectIfUnauth() {
     if (!isAuth()) {
         $host = $_SERVER['HTTP_HOST'];
-        $url = "http://{$host}/47ecx/signin.php";
+        $url = "http://{$host}/signin.php";
         header("Location: $url");
         exit;
     }
@@ -45,7 +45,7 @@ function redirectIfUnauth() {
 function redirectIfAuth() {
     if (isAuth()) {
         $host = $_SERVER['HTTP_HOST'];
-        $url = "http://{$host}/47ecx/index.php";
+        $url = "http://{$host}/index.php";
         header("Location: $url");
         exit;
     }
@@ -130,9 +130,15 @@ function getErrorMessage() {
 function connectDB() {
     global $dbh;
     
+    // 入力内容
+    // new PDO("mysql:dbname=データベース名;host=ホスト名", "ユーザー名", "パスワード");
+
     //　サーバー環境用
-    $dbh = new PDO("mysql:dbname=ss441712_47ecx;host=localhost", "ss441712_shimada", "yuichiro0422");
+    // $dbh = new PDO("mysql:dbname=ss441712_iw31ec;host=localhost", "ユーザー名", "パスワード");
 
     // ローカル環境用
     // $dbh = new PDO("mysql:dbname=iw31_ec;host=localhost", "root", "");
+
+    // AWS環境
+    $dbh = new PDO("mysql:dbname=iw31_ec;host=127.0.0.1;charset=utf8mb4", "ecuser", "ecpass123");
 }
