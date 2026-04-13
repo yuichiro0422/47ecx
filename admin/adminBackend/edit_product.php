@@ -3,10 +3,10 @@
 include "../../functions/common.php";
 
 
-
 // リダイレクトするURL(クエリパラメータ―保持)
 $url = $_POST["currentUrl"];
 
+// IDがない場合はリダイレクト
 if (empty($_POST["id"])) {
     header("Location: " . $url);
     exit;
@@ -14,6 +14,7 @@ if (empty($_POST["id"])) {
 
 $product_id = $_POST["id"];
 
+// 更新するカラムと値を格納する配列
 $updateColumnsSql = [];
 $params = [":id" => $product_id];
 
