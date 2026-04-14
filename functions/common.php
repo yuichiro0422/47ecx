@@ -129,6 +129,7 @@ function getErrorMessage() {
 // データベース接続
 function connectDB() {
     global $dbh;
+　　$env = parse_ini_file(__DIR__ . '/../.env');
     
     // 入力内容
     // new PDO("mysql:dbname=データベース名;host=ホスト名", "ユーザー名", "パスワード");
@@ -140,5 +141,5 @@ function connectDB() {
     // $dbh = new PDO("mysql:dbname=iw31_ec;host=localhost", "root", "");
 
     // AWS環境
-    $dbh = new PDO("mysql:dbname=iw31_ec;host=127.0.0.1;charset=utf8mb4", "ecuser", "ecpass123");
+    $dbh = new PDO("mysql:dbname={$env['DB_NAME']};host={$env['DB_HOST']};charset=utf8mb4", $env["DB_USER"], $env["DB_PASS"]);
 }
