@@ -50,7 +50,6 @@ if (empty($updateColumnsSql)) {
 
 try {
     connectDB();
-    // $dbh = new PDO("mysql:dbname=iw31_ec;host=localhost", "root", "");
 
     $sql = "UPDATE products
     LEFT JOIN product_images ON products.id = product_images.product_id
