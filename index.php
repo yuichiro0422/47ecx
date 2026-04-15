@@ -3,14 +3,19 @@
 
 include "./functions/common.php";
 
+
+// データベース接続
 try {
     connectDB();
-    // $dbh = new PDO("mysql:dbname=iw31_ec;host=localhost", "root", "");
 
     // 都道府県一覧表示用
+    // 都道府県情報をすべて取得
     $sql = "SELECT * FROM prefectures";
     $stmt = $dbh->query($sql);
     $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // 都道府県を地域ごとにグループ化
+    // region_idをキーとして配列にまとめ、同じ地域の都道府県を配列に格納
     $prefectures = [];
     foreach ($list as $row) {
         $regionId = $row["region_id"];
@@ -19,6 +24,7 @@ try {
         }
         $prefectures[$regionId][] = $row;
     }
+
 
     // 人気商品取得
     $sql = "SELECT
