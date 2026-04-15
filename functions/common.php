@@ -129,7 +129,7 @@ function getErrorMessage() {
 // データベース接続
 function connectDB() {
     global $dbh;
-　　$env = parse_ini_file(__DIR__ . '/../.env');
+    $env = parse_ini_file(__DIR__ . '/../.env');
     
     // 入力内容
     // new PDO("mysql:dbname=データベース名;host=ホスト名", "ユーザー名", "パスワード");
