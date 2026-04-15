@@ -1,17 +1,20 @@
 <?php
+// 共通関数をまとめたファイル
+
 session_start();
-// ここには、共通の処理を書く
 
-// PHPの関数
-// function 関数名(引数1, 引数2, ...) { 処理 }
 
+// セッションに保存されている値を取得し、同時に削除する関数
+// 指定したキーの値が存在すれば取得して削除し、なければnullを返す
+// 主にエラーメッセージなど「一度だけ表示したいデータ」の取得に使用する
 function getSessionValue($key) {
     // セッションに値が入っているか確認
     if (isset($_SESSION[$key])) {
-        // セッションから値を取り出す
-        $value = $_SESSION[$key];
-        // セッションから値を削除する
-        unset($_SESSION[$key]);
+
+        // 値が入って入れば取り出してセッションから削除
+        $value = $_SESSION[$key]; // 値を取り出す
+        unset($_SESSION[$key]); // セッションから削除
+
         // 取り出した値を返す
         return $value;
     }
@@ -19,8 +22,9 @@ function getSessionValue($key) {
     return null;
 }
 
-// sessionにuserの値が入っているか調べる
-// 入っていればログイン状態、入っていなければ非ログイン状態
+
+// セッション情報をもとにログイン状態かどうかを判定する関数
+// loginIdとloginEmailの両方がセッションに保存されていればログイン状態とみなす
 function isAuth() {
     if (isset($_SESSION["loginId"]) && isset($_SESSION["loginEmail"])) {
         return true;
@@ -28,20 +32,26 @@ function isAuth() {
     return false;
 }
 
-// ログイン状態かどうかを調べる関数
-// ログインが必要な処理の前に呼び出され、ログイン状態でなければsignin.phpに飛ばす
+
+// ログイン状態でない場合にsignin.php(ログインページ)にリダイレクトする関数
+// 認証が必要なページの先頭で呼び出し、未ログインユーザーのアクセスを制限する
 function redirectIfUnauth() {
     if (!isAuth()) {
+
+        //　現在アクセスしているURLのホスト部分を取得
         $host = $_SERVER['HTTP_HOST'];
+
+        // signin.phpにリダイレクトするURLを作成
         $url = "http://{$host}/signin.php";
-        header("Location: $url");
+
+        header("Location: $url"); // リダイレクト
         exit;
     }
 }
 
-// 非ログイン状態かどうかを調べる関数
-// signin.phpやsignup.php等にアクセスしたときに呼び出され、
-// 既にログイン状態であればindex.phpに飛ばす
+
+// redirectIfUnauth()の対義関数で、ログイン状態の場合にsignin.php(ログインページ)にリダイレクトする関数
+// ログインページなどで呼び出し、既にログインしているユーザーのアクセスを制限する
 function redirectIfAuth() {
     if (isAuth()) {
         $host = $_SERVER['HTTP_HOST'];
@@ -51,24 +61,29 @@ function redirectIfAuth() {
     }
 }
 
-// sessionからデータを取り出しその値を判定し、エラーメッセージを作成する関数
+
+// セッションに保存されたエラーコードをもとに、表示用のエラーメッセージを返す関数
+// errorとerrorCodeの値からエラー内容を判定して、対応するエラーメッセージを返す
 // error => エラーの場所を示す
 // errorCode => エラーの種類を表す
-
 function getErrorMessage() {
 
+    // エラーメッセージを格納する変数を初期化
     $emailError    = "";
     $passwordError = "";
     $databaseError  = "";
     $nameError = "";
     $contentError = "";
 
-    // sessionにエラーの場所を示すコードと内容を示すコードが保存されているか確認
+    // セッションにエラーコードが保存されているか確認
     if (isset($_SESSION['error']) && isset($_SESSION['errorCode'])) {
-        // sessionからコード取り出し
+
+        // セッションからエラーコードを取り出す
         $error     = $_SESSION['error'];
         $errorCode = $_SESSION['errorCode'];
-        // 取り出したコードからエラーの場所と内容を確認
+
+        // 取り出したコードからエラーの場所と内容を判定して、対応するエラーメッセージを変数に格納
+        // errorが1のときはメールアドレスのエラー
         if (1 === $error) {
             if (1 === $errorCode) {
                 $emailError = "メールアドレスが入力されていません";
@@ -79,6 +94,8 @@ function getErrorMessage() {
             } else {
                 $emailError = "Email:エラーが発生しました";
             }
+
+        // errorが2のときはパスワードのエラー
         } elseif (2 === $error) {
             if (1 === $errorCode) {
                 $passwordError = "パスワードが入力されていません";
@@ -89,6 +106,8 @@ function getErrorMessage() {
             } else {
                 $passwordError = "Password:エラーが発生しました";
             }
+
+        // errorが3のときはデータベースのエラー
         } elseif (3 === $error) {
             if (1 === $errorCode) {
                 $databaseError = "データベースの接続に失敗しました";
@@ -97,12 +116,16 @@ function getErrorMessage() {
             } else {
                 $databaseError = "Database:エラーが発生しました";
             }
+
+        // errorが4のときは氏名のエラー
         } elseif (4 === $error) {
             if (1 === $errorCode) {
                 $nameError = "氏名が入力されていません";
             } else {
                 $nameError = "name:エラーが発生しました";
             }
+
+        // errorが5のときはお問い合わせ内容のエラー
         } elseif (5 === $error) {
             if (1 === $errorCode) {
                 $contentError = "お問い合わせ内容が入力されていません";
@@ -110,11 +133,13 @@ function getErrorMessage() {
                 $contentError = "content:エラーが発生しました";
             }
         }
-        // セッションから削除
+
+        // エラーメッセージを取得した後は、セッションからエラーコードを削除しておく
         unset($_SESSION["error"]);
         unset($_SESSION["errorCode"]);
     }
 
+    // エラーメッセージは複数ある可能性があるため、配列にまとめて返す
     return [
         "emailError"    => $emailError,
         "passwordError" => $passwordError,
@@ -126,7 +151,9 @@ function getErrorMessage() {
 }
 
 
-// データベース接続
+// データベースに接続する関数
+// データベース接続に必要な情報は.envファイルに記載しておき、parse_ini_file関数で読み込む
+// データベース接続に成功したら、PDOオブジェクトをグローバル変数$dbhに格納する
 function connectDB() {
     global $dbh;
     $env = parse_ini_file(__DIR__ . '/../.env');
