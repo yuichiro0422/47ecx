@@ -1,3 +1,8 @@
+## 公開URL
+
+- https://3.107.185.173.nip.io/index.php
+- 予備：https://ss441712.stars.ne.jp/47ecx/index.php ID:guest pass:0624
+
 ## 概要
 
 本アプリは、商品購入機能および在庫管理機能を備えたECサイトです。  
